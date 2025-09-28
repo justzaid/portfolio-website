@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { cn } from "../../lib/utils"
 import { X, Menu } from "lucide-react"
+import ThemeToggle from "../ThemeToggle/ThemeToggle"
 
 const navButtons = [
     {name: "Home", href: "#hero"},
@@ -13,7 +14,7 @@ const navButtons = [
 const Navbar = () => {
 
     const [isScrolling, setIsScrolling] = useState(false);
-    const [isMenuOpen, setIsMenuOpen] = useState(true);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -41,6 +42,7 @@ const Navbar = () => {
                             {nav.name}
                         </a>
                     ))}
+                    <ThemeToggle />
                 </div>
                 
                 {/* Mobile - Mapping through Navigation buttons */}
@@ -54,8 +56,9 @@ const Navbar = () => {
                 </button>
 
                 <div 
-                    className={cn("fixed inset-0 bg-background-blur-md z-40 flex flex-col items-center justify-center",
-                    "transition-all duration-300 md:hidden",
+                    className={cn(
+                        "fixed inset-0 bg-background/95 bg-background-blur-md z-40 flex flex-col items-center justify-center",
+                        "transition-all duration-300 md:hidden",
                     isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none")}>
                     <div className="flex flex-col space-y-8 text-xl">
                         {navButtons.map((nav, key) => (
@@ -70,7 +73,6 @@ const Navbar = () => {
                         ))}
                     </div>
                 </div>
-
             </div> 
         </nav>
     )
